@@ -1,0 +1,11 @@
+@import "/src/styles/varibles";
+
+.switch-navbar {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  background: #F3F4F6;
+  border-radius: 6px;
+  max-width: $standard-block-width;
+}

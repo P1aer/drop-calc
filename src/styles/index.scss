@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap');
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 * {
+  font-family: 'Inter', sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,6 +10,9 @@
 
 html {
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
+}
+.gap-2 {
+  gap: 8px !important;
 }

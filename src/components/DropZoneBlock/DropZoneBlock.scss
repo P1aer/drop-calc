@@ -1,0 +1,30 @@
+@import "/src/styles/varibles";
+
+.dropzone-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed #C4C4C4;
+  border-radius: 6px;
+  max-width: $standard-block-width;
+  height: 448px;
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    max-width: 106px;
+    color: #6B7280;
+  }
+}
+.dropzone-title{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 1rem;
+  color: #5D5FEF;
+}
