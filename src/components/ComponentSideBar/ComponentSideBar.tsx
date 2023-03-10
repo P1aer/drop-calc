@@ -5,6 +5,7 @@ import DisplayElement from '../../UI/DisplayElement';
 import OperatorsPad from '../OperatorsPad';
 import NumbersPad from '../NumbersPad';
 import BigButton from '../../UI/BigButton';
+import Draggable from '../Draggable';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface ComponentSideBarProps {
@@ -13,18 +14,27 @@ interface ComponentSideBarProps {
 const ComponentSideBar:React.FC<ComponentSideBarProps> = () => {
     return (
         <Stack gap={3} className='align-self-end'>
-            <div className="component-base">
-                <DisplayElement/>
-            </div>
-            <div className="component-base">
-                <OperatorsPad/>
-            </div>
-            <div className="component-base">
-                <NumbersPad/>
-            </div>
-            <div className="component-base">
-                <BigButton text={'='}/>
-            </div>
+            <Draggable>
+                <div className="component-base">
+                    <DisplayElement/>
+                </div>
+            </Draggable>
+            <Draggable>
+                <div className="component-base" draggable>
+                    <OperatorsPad/>
+                </div>
+            </Draggable>
+            <Draggable>
+                <div className="component-base" draggable>
+                    <NumbersPad/>
+                </div>
+            </Draggable>
+            <Draggable>
+                <div className="component-base" draggable>
+                    <BigButton text={'='}/>
+                </div>
+            </Draggable>
+
         </Stack>
     );
 };

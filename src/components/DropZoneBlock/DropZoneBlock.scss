@@ -18,6 +18,9 @@
     max-width: 106px;
     color: #6B7280;
   }
+  &.active-drag {
+    background: #F0F9FF;
+  }
 }
 .dropzone-title{
   font-style: normal;
