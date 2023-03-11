@@ -1,6 +1,5 @@
-import {SwitchModes} from '../../constants/interfaces';
+import {SwitchModes} from '../../utils/interfaces';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState} from '../store';
 
 
 interface ModeSliceState {

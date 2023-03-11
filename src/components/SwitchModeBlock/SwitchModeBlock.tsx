@@ -3,7 +3,7 @@ import './SwitchModeBlock.scss'
 import ArrowIcon from '../../UI/ArrowIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
-import {FILL_COLOR, SwitchModes} from '../../constants/interfaces';
+import {FILL_COLOR, SwitchModes} from '../../utils/interfaces';
 import {switchSliceMode} from '../../redux/slices/modeSlice';
 import SwitchElement from '../../UI/SwitchElement';
 

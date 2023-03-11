@@ -1,11 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-interface BigButtonProps {
-    text: string
+export interface BigButtonProps {
+    text?: string
 }
 
-const BigButton:React.FC<BigButtonProps> = ({text}) => {
+const BigButton:React.FC<BigButtonProps> = ({text = '='}) => {
     return (
         <Button variant="primary">
             {text}

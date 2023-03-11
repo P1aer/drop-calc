@@ -1,11 +1,12 @@
 import React from 'react';
 
-interface DisplayElementProps {
+export interface DisplayElementProps {
     displayValue?: number
+    [key: string] : any
 }
-const DisplayElement:React.FC<DisplayElementProps> = ({ displayValue = 0} ) => {
+const DisplayElement:React.FC<DisplayElementProps> = ({ displayValue = 0, ...props} ) => {
     return (
-        <div className='display-element'>
+        <div {...props} className='display-element'>
             {displayValue}
         </div>
     );

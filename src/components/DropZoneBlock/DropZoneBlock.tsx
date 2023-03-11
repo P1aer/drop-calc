@@ -1,34 +1,33 @@
-import React, {DragEventHandler, useState} from 'react';
+import React from 'react'
 import './DropZoneBlock.scss'
+import DefaultDropZone from '../../UI/DefaultDropZone'
+import BuildingBlockZone from './BuildingBlockZone'
+import { useDrop } from 'react-dnd'
+import { BLOCK_DND_TYPE } from '../../utils/interfaces'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { DragItem, onZoneDrop } from '../../redux/slices/DragDropSlice'
 
 const DropZoneBlock = () => {
-    const [isDragOver,setIsDragOver] = useState(false)
-    const classes = isDragOver ? 'active-drag' : ''
-    const toggleDragOver = (val: boolean) => () => setIsDragOver(val)
+  const dispatch = useAppDispatch()
+  const droppedBlocks = useAppSelector(state => state.dragDrop.dropZoneItems)
+    const [{ isOver }, drop] = useDrop(
+      () => ({
+          accept: BLOCK_DND_TYPE,
+        drop: (item) => {
+            dispatch(onZoneDrop(item as DragItem))
+            console.log(item)
 
-    const onDrop:DragEventHandler<HTMLDivElement> = (event) => {
-        event.preventDefault()
-        setIsDragOver(false)
-    }
+        },
+        collect: (monitor) => ({
+          isOver: monitor.isOver()
+        })
+      })
+    )
+   const isShowingCanvas = droppedBlocks.length > 0
     return (
-        <div
-            onDrop={onDrop}
-            onDragOver={(event) => {
-                event.preventDefault()
-            }}
-            className={'dropzone-block ' + classes}
-            onDragEnter={(event) => {
-                event.stopPropagation()
-                toggleDragOver(true)
-            }}
-            onDragLeave={(event) => {
-                event.stopPropagation()
-                toggleDragOver(false)
-            }}
-        >
-                <img src="/drop.svg" alt="drop icon"/>
-                <span className='dropzone-title'>Перетащите сюда</span>
-                <p>любой элемент из левой панели</p>
+        <div ref={drop}>
+          <DefaultDropZone isShowing={!isShowingCanvas} isDragOver={isOver}/>
+          <BuildingBlockZone blocks={droppedBlocks}/>
         </div>
     );
 };

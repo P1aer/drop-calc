@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import modeReducer from './slices/modeSlice'
+import dragDropReducer from './slices/DragDropSlice'
 
 export const store = configureStore({
     reducer: {
-        mode: modeReducer
+        mode: modeReducer,
+        dragDrop: dragDropReducer,
     },
 })
 
