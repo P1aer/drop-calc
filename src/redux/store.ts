@@ -3,10 +3,10 @@ import modeReducer from './slices/modeSlice'
 import dragDropReducer from './slices/DragDropSlice'
 
 export const store = configureStore({
-    reducer: {
-        mode: modeReducer,
-        dragDrop: dragDropReducer,
-    },
+  reducer: {
+    mode: modeReducer,
+    dragDrop: dragDropReducer,
+  },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

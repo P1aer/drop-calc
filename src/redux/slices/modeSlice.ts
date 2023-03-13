@@ -1,21 +1,20 @@
-import {SwitchModes} from '../../utils/interfaces';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
+import { SwitchModes } from '../../utils/interfaces'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface ModeSliceState {
-    value: SwitchModes
+  value: SwitchModes
 }
 const initialState: ModeSliceState = {
-    value: SwitchModes.CONSTRUCTOR,
+  value: SwitchModes.CONSTRUCTOR,
 }
 export const modeSlice = createSlice({
-    name: 'mode',
-    initialState,
-    reducers: {
-        switchSliceMode: (state, action: PayloadAction<SwitchModes>) => {
-            state.value = action.payload
-        }
-    }
+  name: 'mode',
+  initialState,
+  reducers: {
+    switchSliceMode: (state, action: PayloadAction<SwitchModes>) => {
+      state.value = action.payload
+    },
+  },
 })
 
 export const { switchSliceMode } = modeSlice.actions

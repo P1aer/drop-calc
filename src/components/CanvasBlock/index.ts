@@ -1,1 +1,1 @@
-export {default} from './CanvasBlock'
+export { default } from './CanvasBlock'

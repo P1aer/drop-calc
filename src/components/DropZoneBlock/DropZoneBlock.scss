@@ -1,5 +1,10 @@
 @import "/src/styles/varibles";
 
+.dropzone {
+  height: 453px;
+}
+
+
 .dropzone-block {
   display: flex;
   align-items: center;
@@ -8,7 +13,7 @@
   border: 2px dashed #C4C4C4;
   border-radius: 6px;
   max-width: $standard-block-width;
-  height: 448px;
+  height: 453px;
   p {
     font-style: normal;
     font-weight: 400;
