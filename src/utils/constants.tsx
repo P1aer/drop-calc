@@ -7,29 +7,33 @@ import { BuildingBlocksIds, BuildingBlockType } from './interfaces'
 export const BLOCK_DND_TYPE = 'BLOCK_DND_TYPE'
 export const BLOCK_ARRAY: BuildingBlockType[] = [
   {
-    position: 0,
+    position: null,
     id: BuildingBlocksIds.DISPLAY,
+    key: Math.random(),
     block: (props: DisplayElementProps) => {
       return <DisplayElement {...props} />
     },
   },
   {
-    position: 1,
+    position: null,
     id: BuildingBlocksIds.OPERATORS,
+    key: Math.random(),
     block: (props) => {
       return <OperatorsPad {...props} />
     },
   },
   {
-    position: 2,
+    position: null,
     id: BuildingBlocksIds.NUMBERS,
+    key: Math.random(),
     block: (props) => {
       return <NumbersPad {...props} />
     },
   },
   {
-    position: 3,
+    position: null,
     id: BuildingBlocksIds.EXECUTE,
+    key: Math.random(),
     block: (props: BigButtonProps) => {
       return <BigButton {...props} />
     },
@@ -37,29 +41,33 @@ export const BLOCK_ARRAY: BuildingBlockType[] = [
 ]
 export const BLOCKS: Record<BuildingBlocksIds, BuildingBlockType> = {
   [BuildingBlocksIds.DISPLAY]: {
-    position: 0,
+    position: null,
+    key: Math.random(),
     id: BuildingBlocksIds.DISPLAY,
     block: (props: DisplayElementProps) => {
       return <DisplayElement {...props} />
     },
   },
   [BuildingBlocksIds.OPERATORS]: {
-    position: 1,
+    position: null,
+    key: Math.random(),
     id: BuildingBlocksIds.OPERATORS,
     block: (props) => {
       return <OperatorsPad {...props} />
     },
   },
   [BuildingBlocksIds.NUMBERS]: {
-    position: 2,
+    position: null,
     id: BuildingBlocksIds.NUMBERS,
+    key: Math.random(),
     block: (props) => {
       return <NumbersPad {...props} />
     },
   },
   [BuildingBlocksIds.EXECUTE]: {
-    position: 3,
+    position: null,
     id: BuildingBlocksIds.EXECUTE,
+    key: Math.random(),
     block: (props: BigButtonProps) => {
       return <BigButton {...props} />
     },

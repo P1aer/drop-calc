@@ -11,7 +11,7 @@ const ComponentSideBar: React.FC<ComponentSideBarProps> = () => {
   return (
     <Stack gap={3} className='align-self-end'>
       {BLOCK_ARRAY.map((block) => (
-        <Draggable key={block.id} block={block} />
+        <Draggable key={block.key} block={block} />
       ))}
     </Stack>
   )

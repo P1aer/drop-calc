@@ -74,7 +74,14 @@
 }
 
 .drop-hr {
-  position: absolute;
-  bottom: -1rem;
-  left: -0.3rem;
+  &-down {
+    bottom: -1rem;
+    left: -0.3rem;
+    position: absolute;
+  }
+  &-up {
+    position: absolute;
+    top: -0.75rem;
+    left: -0.3rem;
+  }
 }

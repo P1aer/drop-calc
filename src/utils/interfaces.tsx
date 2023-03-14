@@ -9,7 +9,8 @@ export enum SwitchModes {
 }
 export type BuildingBlockType = {
   id: number
-  position: number
+  key: number
+  position: number | null
   block: (props: any) => JSX.Element
 }
 

@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { BuildingBlockType } from '../../utils/interfaces'
+import { handleInsertInArray, sortByPosition } from '../../utils/arrayUtils'
 export interface DragItem {
   type: string
   block: BuildingBlockType
 }
+interface InsertAction {
+  indexTo: number
+  indexFrom: number | null
+  item: BuildingBlockType
+}
 interface DragDropState {
-  dropZoneItems: DragItem[]
+  dropZoneItems: BuildingBlockType[]
 }
 const initialState: DragDropState = {
   dropZoneItems: [],
@@ -16,18 +22,48 @@ export const DragDropSlice = createSlice({
   reducers: {
     onZoneDrop: (state, action: PayloadAction<DragItem>) => {
       const { id, position } = action.payload.block
-      const isInArray = state.dropZoneItems.find((elem) => elem.block.id === id && position)
+      const currentIndex = state.dropZoneItems.length
+      const isInArray = state.dropZoneItems.find((elem) => elem.id === id)
+
       if (!isInArray) {
-        state.dropZoneItems.push(action.payload)
+        const copyObject = { ...action.payload.block, position: currentIndex }
+        state.dropZoneItems.push(copyObject)
+        return
+      }
+      const isDifferentPosition = position !== currentIndex
+
+      if (isDifferentPosition) {
+        const sortedState = [...state.dropZoneItems].sort(sortByPosition)
+        sortedState[position as number].position = currentIndex
+        state.dropZoneItems = handleInsertInArray(sortedState, position as number, currentIndex)
       }
     },
-    excludeFromZone: (state, action: PayloadAction<DragItem>) => {
-      state.dropZoneItems = state.dropZoneItems.filter(
-        ({ block }) => block.id !== action.payload.block.id,
-      )
+    includeToArray: (state, action: PayloadAction<InsertAction>) => {
+      const { indexTo, indexFrom } = action.payload
+      if (indexTo === indexFrom) return
+
+      const sortedState: BuildingBlockType[] = [...state.dropZoneItems].sort(sortByPosition)
+      const copyObject = { ...action.payload.item, position: indexTo }
+      if (indexFrom === null) {
+        handleInsertInArray(sortedState, sortedState.length, indexTo)
+        sortedState.push(copyObject)
+      } else {
+        sortedState[indexFrom].position = indexTo
+        handleInsertInArray(sortedState, indexFrom, indexTo)
+      }
+
+      state.dropZoneItems = sortedState
+    },
+    excludeFromZone: (state, action: PayloadAction<BuildingBlockType>) => {
+      const { id, position } = action.payload
+      const filteredState = state.dropZoneItems
+        .filter((block) => block.id !== id)
+        .sort(sortByPosition)
+      handleInsertInArray(filteredState, position as number, filteredState.length)
+      state.dropZoneItems = filteredState
     },
   },
 })
 
-export const { onZoneDrop, excludeFromZone } = DragDropSlice.actions
+export const { onZoneDrop, excludeFromZone, includeToArray } = DragDropSlice.actions
 export default DragDropSlice.reducer

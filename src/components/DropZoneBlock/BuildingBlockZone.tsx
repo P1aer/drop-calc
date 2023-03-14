@@ -1,25 +1,30 @@
 import React from 'react'
-import { DragItem, excludeFromZone } from '../../redux/slices/DragDropSlice'
+import { excludeFromZone } from '../../redux/slices/DragDropSlice'
 import Stack from 'react-bootstrap/Stack'
 import { useAppDispatch } from '../../redux/hooks'
 import DropZoneDraggable from '../DropZoneDraggable'
 import { EXCLUDED_BLOCKS } from '../../utils/constants'
+import { BuildingBlockType } from '../../utils/interfaces'
+import { sortByPosition } from '../../utils/arrayUtils'
 
 interface BuildingBlockZoneProps {
-  blocks: DragItem[]
+  blocks: BuildingBlockType[]
+  isOver: boolean
 }
-const BuildingBlockZone: React.FC<BuildingBlockZoneProps> = ({ blocks }) => {
+const BuildingBlockZone: React.FC<BuildingBlockZoneProps> = ({ blocks, isOver }) => {
   const dispatch = useAppDispatch()
-  const onDoubleClick = (block: DragItem) => () => {
+  const onDoubleClick = (block: BuildingBlockType) => () => {
     dispatch(excludeFromZone(block))
   }
+
   return (
-    <Stack gap={3} className='align-self-end'>
-      {blocks.map((elem) => (
-        <div key={elem.block.id} onDoubleClick={onDoubleClick(elem)}>
+    <Stack className='dropzone-stack'>
+      {[...blocks].sort(sortByPosition).map((elem, index) => (
+        <div key={elem.key} onDoubleClick={onDoubleClick(elem)}>
           <DropZoneDraggable
-            block={elem.block}
-            isDisabled={EXCLUDED_BLOCKS.includes(elem.block.id)}
+            block={elem}
+            isDisabled={EXCLUDED_BLOCKS.includes(elem.id)}
+            isDroppedInZone={isOver && index === blocks.length - 1}
           />
         </div>
       ))}
